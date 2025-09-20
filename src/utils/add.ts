@@ -21,6 +21,3 @@ export const add = (a: numType, b: numType): number => {
   console.log(result);
   return result;
 };
-
-add(2, "5");
-add("3", 3);

@@ -18,6 +18,6 @@ export const add = (a: numType, b: numType): number => {
   }
 
   const result = numA + numB;
-  console.log(result);
+
   return result;
 };

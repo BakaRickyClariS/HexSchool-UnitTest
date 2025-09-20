@@ -6,15 +6,12 @@
 
 type numType = number | string;
 
-const roundTo = (a: numType, b: numType): number => {
+export const roundTo = (a: numType, b: numType): number => {
   const numA = Number(a);
   const numB = Number(b);
   const powNum = Math.pow(10, numB);
   const result = (
     Math.round((numA + Number.EPSILON) * powNum) / powNum
   ).toFixed(numB);
-  console.log(result);
-  return result;
+  return Number(result);
 };
-roundTo(1.005, 2);
-roundTo(123.4567, 3);

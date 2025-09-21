@@ -1,22 +1,14 @@
-// 6.還原上一步（可復原計算器）
-// 函式名稱：createUndoableCalculator
-// 說明：
-// 回傳一個可鏈式操作的物件，支援 .add(n) .sub(n) .mul(n) .div(n) .undo() .value()
-// .undo()：還原上一個成功的運算（可連續多次），若無可還原則維持現狀。
-// 所有運算皆回傳物件本身以便鏈式呼叫；.value() 回傳目前數值。
-// 例如：
-// const c = createUndoableCalculator(10);
-// c.add(5).mul(2).undo().sub(3).value();
+// 7.重做下一步
+// 依照上題目，做重做下一步
+// 函式名稱：createRedoableCalculator
+// input
 
-// // 12
-//
-// const c = createUndoableCalculator(2);
-// c.mul(5).div(2).add(4).undo().undo().mul(3).value();
+// const c = createRedoableCalculator(10);
+// c.add(5).mul(2).undo().redo().value();
 
 // // 30
 //
-
-export class createUndoableCalculator {
+export class createRedoableCalculator {
   private result: number;
   private stepIndex: number;
   private stepList: number[];

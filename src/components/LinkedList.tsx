@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type JSX } from "react";
 
 type NodeProps = {
   node: string;
@@ -37,12 +37,30 @@ const LinkedList = () => {
 
   const filterNode = (value: string) => {
     if (value.trim() === "") return;
-    setFilteredNodes(nodes.filter((node) => node == value));
+    // setFilteredNodes(nodes.filter((node) => node == value));
+    setFilteredNodes(
+      nodes.reduce<string[]>((acc, node) => {
+        if (node === value) acc.push(node);
+        return acc;
+      }, [])
+    );
   };
   const removeNode = (value: string) => {
     if (value.trim() === "") return;
-    setNodes(nodes.filter((node) => node != value));
-    setFilteredNodes(filteredNodes.filter((node) => node != value));
+    // setNodes(nodes.filter((node) => node != value));
+    // setFilteredNodes(filteredNodes.filter((node) => node != value));
+    setNodes(
+      nodes.reduce<string[]>((acc, node) => {
+        if (node !== value) acc.push(node);
+        return acc;
+      }, [])
+    );
+    setFilteredNodes(
+      filteredNodes.reduce<string[]>((acc, node) => {
+        if (node !== value) acc.push(node);
+        return acc;
+      }, [])
+    );
   };
 
   return (
@@ -90,7 +108,7 @@ const LinkedList = () => {
 
         {/* Node List */}
         <ul className="space-y-2">
-          {filteredNodes.length > 0
+          {/* {filteredNodes.length > 0
             ? filteredNodes.map((node, index) => (
                 <Node
                   key={index}
@@ -106,7 +124,30 @@ const LinkedList = () => {
                   index={index}
                   removeNode={removeNode}
                 />
-              ))}
+              ))} */}
+          {filteredNodes.length > 0
+            ? filteredNodes.reduce<JSX.Element[]>((acc, node, index) => {
+                acc.push(
+                  <Node
+                    key={index}
+                    node={node}
+                    index={index}
+                    removeNode={removeNode}
+                  />
+                );
+                return acc;
+              }, [])
+            : nodes.reduce<JSX.Element[]>((acc, node, index) => {
+                acc.push(
+                  <Node
+                    key={index}
+                    node={node}
+                    index={index}
+                    removeNode={removeNode}
+                  />
+                );
+                return acc;
+              }, [])}
         </ul>
       </div>
     </div>

@@ -17,14 +17,19 @@
 ## 📂 專案結構（大致）
 ```
 HexSchool-UnitTest/
-├── src/
-│ ├── LinkedList.tsx ← 主組件：新增、搜尋、刪除節點功能
-│ ├── mapWithReduce.ts ← 將 map 行為用 reduce 重現
-│ ├── filterWithReduce.ts ← 將 filter 行為用 reduce 重現
+├── src/utils/
+│ ├── add.ts ← 回傳 a + b
+│ ├── roundTo.ts ← 將 value 四捨五入到指定小數位
+│ ├── safeDivide.ts ← 若 divisor 為 0 回傳 null，否則回傳商
 │ └── … ← 其他輔助檔案
-├── src/tests/
+│ ├──__tests__/ ← 測試檔
+│ ├── ├── add.test.ts 
+│ ├── ├── roundTo.test.ts
+│ ├── ├── safeDivide.test.ts
+│ └── ├── … ← 其他輔助檔案
+├── src/components/
 │ ├── LinkedList.test.tsx ← 測試新增、刪除、搜尋等功能
-│ └── mapWithReduce.test.ts ← 測試 mapWithReduce 是否正常運作
+│ └── mLinkedList.tsx ← 主組件：新增、搜尋、刪除節點功能
 ├── vite.config.ts
 ├── tsconfig.json
 ├── package.json
@@ -46,6 +51,27 @@ HexSchool-UnitTest/
 
 - **mapWithReduce / filterWithReduce**  
   純函式練習，用 `reduce` 重現 `map` 與 `filter` 的功能並提供測試。
+
+---
+
+## ✅ Utils 函式簡介
+src/utils 共有 8 個函式，搭配對應測試檔，功能如下：
+
+- **add(a, b)：回傳 a + b**
+
+- **safeDivide(dividend, divisor)：若 divisor 為 0 回傳 null，否則回傳商**
+
+- **roundTo(value, decimals)：將 value 四捨五入到指定小數位**
+
+- **parsePercent(input)：將 "75%" 轉成 0.75**
+
+- **nthRoot(value, n)：計算 value 的 n 次方根**
+
+- **createAsyncCalculator(init?)：回傳非同步計算器（add/subtract/multiply/divide 回傳 Promise）**
+
+- **createRedoableCalculator(init?)：支援 add/subtract、undo、redo 的計算器**
+
+- **createUndoableCalculator(init?)：支援 add/subtract、undo 的計算器**
 
 ---
 
